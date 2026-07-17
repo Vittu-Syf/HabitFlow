@@ -4,6 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 enum Frequency {
@@ -22,6 +23,7 @@ model User {
   updatedAt     DateTime @updatedAt
 
   habits Habit[]
+
 }
 
 model Habit {
@@ -46,7 +48,11 @@ model Habit {
   user User @relation(fields: [userId], references: [id])
 
   checks HabitCheck[]
-  goal   Goal?
+  goals Goal[]
+
+  order Int @default(0)
+
+  startDate DateTime?
 }
 
 model HabitCheck {
@@ -56,12 +62,14 @@ model HabitCheck {
   completedAt DateTime
 
   habit Habit @relation(fields: [habitId], references: [id])
+
+  notes String?
 }
 
 model Goal {
   id           Int      @id @default(autoincrement())
 
-  habitId      Int      @unique
+  habitId      Int      
 
   targetValue  Int
   currentValue Int      @default(0)
@@ -69,4 +77,6 @@ model Goal {
   createdAt    DateTime @default(now())
 
   habit Habit @relation(fields: [habitId], references: [id])
+
+
 }

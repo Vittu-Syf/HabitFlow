@@ -11,7 +11,7 @@ app.use(routes);
 export default app;
 
 //import express: importa o framework para criar o servidor e gerenciar rotas e requisições HTTP.
-//import cors: importa um middleware quue permite requisições entre diferentes origens.
+//import cors: importa um middleware que permite requisições entre diferentes origens.
 //import routes from "./routes/index.js": importa o arquivo de rotas principal da aplicação.
 //const app = express(): cria a aplicação Express.
 //app.use(cors()): registra o middleware de CORS para todas as requisições.
